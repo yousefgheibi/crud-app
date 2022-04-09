@@ -101,6 +101,30 @@ app.post('/user', (req, res) => {
 
 });
 
+
+// update single data 
+app.put("/user/:id",(req,res)=>{
+  let gId = req.params.id;
+  let fullname = req.body.fullname;
+  let email = req.body.email;
+  let mobile = req.body.mobile;
+
+
+  let qry = `update user set fullname = '${fullname}', email= '${email}', mobile = '${mobile}' where id = '${gId}'`;
+
+
+  db.query(qry,(err, result)=>{
+    if(err){
+      console.log(err);
+    }
+
+    res.send({
+      message: 'data updated'
+    })
+  });
+
+})
+
 app.listen(3000, () => {
   console.log("server is running");
 });
