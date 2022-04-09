@@ -76,9 +76,31 @@ app.get('/user/:id', (req, res) => {
 
 })
 
+
+
+// create data 
+
+app.post('/user', (req, res) => {
+  let fullname = req.body.fullname;
+  let email = req.body.email;
+  let mobile = req.baseUrl.mobile;
+
+
+  let qry = `insert into user(fullname,email,mobile) values ('${fullname}','${email}','${mobile}')`;
+
+  db.query(qry,(err,result)=>{
+    if(err){
+      console.log(err);
+    }
+    
+    res.send({
+      message: 'data inserted.'
+    })
+    
+})
+
+});
+
 app.listen(3000, () => {
   console.log("server is running");
 });
-
-
-
