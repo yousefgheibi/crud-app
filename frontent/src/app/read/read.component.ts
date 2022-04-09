@@ -17,4 +17,15 @@ export class ReadComponent implements OnInit {
     })
   }
 
+
+  deleteItem(id : number){
+    console.log(id);
+      this._api.deleteData(id).subscribe((res)=>{
+
+        this._api.getAllData().subscribe((res)=>{
+          this.readData = res.data;
+        })
+      });
+
+  }
 }

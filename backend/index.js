@@ -129,10 +129,9 @@ app.put("/user/:id", (req, res) => {
 
 
 // delete single data 
-app.delete('/user', (req, res) => {
-  let gId = reg.params.id;
-
-  let qry = `delete from user where id='${gId}' `;
+app.delete('/user/:id', (req, res) => {
+  let gId = req.params.id;
+  let qry = `delete from user where user.id='${gId}'`;
 
   db.query(qry, (err, result) => {
     if (err) {
