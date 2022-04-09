@@ -88,22 +88,22 @@ app.post('/user', (req, res) => {
 
   let qry = `insert into user(fullname,email,mobile) values ('${fullname}','${email}','${mobile}')`;
 
-  db.query(qry,(err,result)=>{
-    if(err){
+  db.query(qry, (err, result) => {
+    if (err) {
       console.log(err);
     }
-    
+
     res.send({
       message: 'data inserted.'
     })
-    
-})
+
+  })
 
 });
 
 
 // update single data 
-app.put("/user/:id",(req,res)=>{
+app.put("/user/:id", (req, res) => {
   let gId = req.params.id;
   let fullname = req.body.fullname;
   let email = req.body.email;
@@ -113,8 +113,8 @@ app.put("/user/:id",(req,res)=>{
   let qry = `update user set fullname = '${fullname}', email= '${email}', mobile = '${mobile}' where id = '${gId}'`;
 
 
-  db.query(qry,(err, result)=>{
-    if(err){
+  db.query(qry, (err, result) => {
+    if (err) {
       console.log(err);
     }
 
@@ -124,6 +124,28 @@ app.put("/user/:id",(req,res)=>{
   });
 
 })
+
+
+
+// delete single data 
+app.delete('/user', (req, res) => {
+  let gId = reg.params.id;
+
+  let qry = `delete from user where id='${gId}' `;
+
+  db.query(qry, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+
+    res.send({
+      message: 'data deleted.'
+    })
+
+  })
+})
+
+
 
 app.listen(3000, () => {
   console.log("server is running");
